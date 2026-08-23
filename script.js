@@ -23,3 +23,54 @@ function showPopup(bool) {
     document.getElementById('popup').style.visibility = 'hidden'
   }
 }
+
+
+// Contact Form Handler
+function handleContactFormSubmit(event) {
+  event.preventDefault();
+  
+  const form = document.getElementById('contactForm');
+  const formMessage = document.getElementById('formMessage');
+  const submitBtn = form.querySelector('.submit-btn');
+  
+  // Disable button to prevent multiple submissions
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Verzenden...';
+  
+  // Get form data
+  const formData = new FormData(form);
+  
+  // Send data using fetch
+  fetch(form.action, {
+    method: form.method,
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.success) {
+      formMessage.textContent = data.message;
+      formMessage.className = 'form-message success';
+      form.reset();
+    } else {
+      formMessage.textContent = data.message;
+      formMessage.className = 'form-message error';
+    }
+  })
+  .catch(error => {
+    formMessage.textContent = 'Er is een fout opgetreden. Probeer het later nog eens.';
+    formMessage.className = 'form-message error';
+    console.error('Error:', error);
+  })
+  .finally(() => {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Versturen';
+  });
+}
+
+// Add event listener when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', handleContactFormSubmit);
+  }
+});

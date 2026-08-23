@@ -183,11 +183,42 @@
       </div>
     </section>
 
-    <!-- Recommendation Form -->
+    <!-- Contact Form -->
     <section id="contact">
+      <div class="contact-form animate-on-scroll">
+        <h2>Stuur een Bericht</h2>
+        <form id="contactForm" action="contact.php" method="POST">
+          <div class="form-group">
+            <label for="naam">Naam</label>
+            <input type="text" id="naam" name="naam" required>
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="telefoon">Telefoon</label>
+            <input type="tel" id="telefoon" name="telefoon">
+          </div>
+          <div class="form-group">
+            <label for="onderwerp">Onderwerp</label>
+            <input type="text" id="onderwerp" name="onderwerp" required>
+          </div>
+          <div class="form-group">
+            <label for="bericht">Bericht</label>
+            <textarea id="bericht" name="bericht" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Versturen</button>
+        </form>
+        <div id="formMessage" class="form-message"></div>
+      </div>
+    </section>
+
+    <!-- Recommendation Form -->
+    <section id="recommendations-form">
       <div class="flex_center">
         <fieldset>
-          <legend class="introduction">Leave a Recommendation</legend>          
+          <legend class="introduction">Leave a Recommendation</legend>        
           <input type="text" placeholder="Name (Optional)"> <br/>
           <textarea id="new_recommendation" cols="500" rows="10" placeholder="Message"></textarea>
           <div class="flex_center">
@@ -195,6 +226,7 @@
           </div>
         </fieldset>
       </div>
+    </section>
     </section>
 
     <div class="iconbutton">
